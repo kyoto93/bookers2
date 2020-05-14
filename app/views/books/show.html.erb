@@ -1,0 +1,29 @@
+<%= render partial: 'users/list.html', locals: {user: @book.user,books: Book.new} %>
+
+<div class="col-xs-9">
+
+<h2>Book detail</h2>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td> <%= attachment_image_tag @user, :profile_image, size: '40x40', fallback:"no_image.jpg",size:'40x40' %></td>
+
+
+            <td><%= @book.title %></td>
+
+            <td><%= @book.body %></td>
+
+		<% if @user==current_user %>
+            <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
+
+            <td><%=link_to 'Destroy', book_path(@book.id), method: :delete,  "data-confirm" => "本当に消しますか？"%></td>
+        <% end %>
+
+        </tr>
+    </tbody>
+</table>
+
+ <%= link_to @user.name, user_path(@book.user) %>
+
+</div>
